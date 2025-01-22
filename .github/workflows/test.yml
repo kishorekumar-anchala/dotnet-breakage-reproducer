@@ -7,22 +7,20 @@ jobs:
     name: Run `dotnet --info`
     runs-on: windows-latest
     steps:
-      - name: Install .NET 8.0.x
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "8.0.x"
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Run `dotnet --info`
         run: dotnet --info
+        working-directory: DotnetBreakageReproducer
 
   dotnet-workload-search:
     name: Run `dotnet workload search`
     runs-on: windows-latest
     steps:
-      - name: Install .NET 8.0.x
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "8.0.x"
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Run `dotnet workload search`
         run: dotnet workload search
+        working-directory: DotnetBreakageReproducer
