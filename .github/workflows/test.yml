@@ -1,0 +1,18 @@
+on: [push, workflow_dispatch]
+name: .NET breakage reproducer
+
+
+jobs:
+  dotnet-info:
+    name: Run `dotnet --info`
+    runs-on: windows-latest
+    steps:
+      - name: Run `dotnet --info`
+        run: dotnet --info
+
+  dotnet-workload-search:
+    name: Run `dotnet workload search`
+    runs-on: windows-latest
+    steps:
+      - name: Run `dotnet workload search`
+        run: dotnet workload search
