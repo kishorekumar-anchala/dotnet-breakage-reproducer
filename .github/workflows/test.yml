@@ -12,7 +12,6 @@ jobs:
 
       - name: Run `dotnet --info`
         run: dotnet --info
-        working-directory: DotnetBreakageReproducer
 
   dotnet-workload-search:
     name: Run `dotnet workload search`
@@ -23,4 +22,3 @@ jobs:
 
       - name: Run `dotnet workload search`
         run: dotnet workload search
-        working-directory: DotnetBreakageReproducer
