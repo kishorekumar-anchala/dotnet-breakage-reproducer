@@ -1,14 +1,21 @@
-on: [push, workflow_dispatch]
 name: .NET breakage reproducer
 
+on: 
+  [push, workflow_dispatch]
 
 jobs:
   dotnet-info:
     name: Run `dotnet --info`
     runs-on: windows-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up .NET SDK 8.0.112
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.112'
 
       - name: Run `dotnet --info`
         run: dotnet --info
@@ -16,9 +23,15 @@ jobs:
   dotnet-workload-search:
     name: Run `dotnet workload search`
     runs-on: windows-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up .NET SDK 8.0.112
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.112'
 
       - name: Run `dotnet workload search`
         run: dotnet workload search
