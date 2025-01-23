@@ -1,6 +1,6 @@
 name: .NET breakage reproducer
 
-on: 
+on:
   [push, workflow_dispatch]
 
 jobs:
@@ -9,13 +9,17 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up .NET SDK 8.0.112
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.112'
+
+      - name: Install required .NET workloads
+        run: |
+          dotnet workload install android # Replace 'android' with other workloads if needed
 
       - name: Run `dotnet --info`
         run: dotnet --info
@@ -23,15 +27,20 @@ jobs:
   dotnet-workload-search:
     name: Run `dotnet workload search`
     runs-on: windows-latest
+    needs: dotnet-info  # This ensures it runs after the dotnet-info job
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up .NET SDK 8.0.112
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.112'
+
+      - name: Install required .NET workloads
+        run: |
+          dotnet workload install android # Replace 'android' with other workloads if needed
 
       - name: Run `dotnet workload search`
         run: dotnet workload search
